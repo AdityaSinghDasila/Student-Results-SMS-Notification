@@ -1,0 +1,11 @@
+{
+  "name": "result_sms",
+  "version": "1.0.0",
+  "description": "Sending student result online via SMS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Aditya Singh",
+  "license": "ISC"
+}
