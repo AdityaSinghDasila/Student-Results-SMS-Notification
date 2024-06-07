@@ -1,6 +1,54 @@
+body{
+    background-image: url("./images/home_bg.jpg");
+    background-size: contain;
+    color: grey;
+}
 .form{
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 2rem;
 }
+header{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+.form_container{
+    padding-top:5%;
+    padding-bottom: 5%;
+    border:1px solid navy;
+    background-color: white;
+    z-index: 1;
+    opacity: 60%;
+    border-radius: 2%;
+    margin-left: 25%;
+    margin-right:25%;
+    margin-top:5%;
+    margin-bottom: 5%;
+}
+.subjects{
+    display:flex;
+    gap: 10px;
+    justify-content: space-around;
+}
+
+
+
+/* roboto css below:- */
+
+  .roboto-medium {
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+  }
+  .roboto-light {
+    font-family: "Roboto", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+  }
+  .roboto-thin {
+    font-family: "Roboto", sans-serif;
+    font-weight: 100;
+    font-style: normal;
+  }
