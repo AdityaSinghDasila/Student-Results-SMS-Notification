@@ -4,36 +4,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Marksheet</title>
+    <link rel="stylesheet" href="../public/style_h.css">
 </head>
 <body>
-    <form action="/marks" method="POST">
+    <header>
         <div>
-            <label for="id">Id:</label>
-            <input type="number" id="id" name="id" required>
+            <h1>STUDENT MARKSHEET UPDATION</h1>
         </div>
-        <div>
-            <label for="name">Student Name:</label>
-            <input type="text" id="name" name="name" required>
-        </div>
-        <div>
-            <label for="Eng">English:</label>
-            <input type="number" id="Eng" name="english" min="0" max="100" required>
-        </div>
-        <div>
-            <label for="Hindi">Hindi:</label>
-            <input type="number" id="Hindi" name="hindi" min="0" max="100" required>
-        </div>
-        <div>
-            <label for="Maths">Maths:</label>
-            <input type="number" id="Maths" name="maths" min="0" max="100" required>
-        </div>
-        <div>
-            <label for="Sci">Science:</label>
-            <input type="number" id="Sci" name="science" min="0" max="100" required>
-        </div>
-        <div>
-            <input type="submit" value="Submit">
-        </div>
-    </form>
+    </header>
+    <div class="form_container">
+        <form class="form" action="/marks" method="POST">
+            <label><h5>MARKS ENTRY</h5></label>
+            <div>
+                <label for="id">Id:</label>
+                <input type="number" id="id" name="id" required>
+            </div>
+            <div>
+                <label for="name">Student Name:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="subjects">
+                <div>
+                    <label for="Eng">English:</label>
+                    <input type="number" id="Eng" name="english" min="0" max="100" placeholder="/100" required>
+                </div>
+                <div>
+                    <label for="Hindi">Hindi:</label>
+                    <input type="number" id="Hindi" name="hindi" min="0" max="100" placeholder="/100" required>
+                </div>
+                <div>
+                    <label for="Maths">Maths:</label>
+                    <input type="number" id="Maths" name="maths" min="0" max="100" placeholder="/100" required>
+                </div>
+                <div>
+                    <label for="Sci">Science:</label>
+                    <input type="number" id="Sci" name="science" min="0" max="100" placeholder="/100" required>
+                </div>
+            </div>
+            <div>
+                <input type="submit" value="Submit">
+            </div>
+        </form>
+    </div>
 </body>
 </html>
