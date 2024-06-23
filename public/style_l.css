@@ -40,6 +40,11 @@ footer{
     margin-bottom: 10px;
     padding-top: 2%;
 }
+.marq{
+    margin-top:0px;
+}
+
+
 /* font css below use weight 300-700*/
 .teko-header {
   font-family: "Teko", sans-serif;

@@ -20,7 +20,7 @@ header{
     border:1px solid navy;
     background-color: white;
     z-index: 1;
-    opacity: 60%;
+    opacity: 70%;
     border-radius: 2%;
     margin-left: 25%;
     margin-right:25%;
@@ -32,8 +32,23 @@ header{
     gap: 10px;
     justify-content: space-around;
 }
-
-
+.btn{
+  color:white;
+  background-color:#007BFF ;
+  border:0px;
+  border-radius: 10%;
+  padding: 5px;
+}
+.btn-w{
+  background-color: #DEE2E6;
+  border:0px;
+  border-radius: 10%;
+  padding: 5px;
+}
+.btn-div{
+  display: flex;
+  gap:5%;
+}
 
 /* roboto css below:- */
 
