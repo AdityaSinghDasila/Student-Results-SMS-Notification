@@ -24,7 +24,7 @@ body{
     opacity: 100%;
 }
 .outer_container{
-    background-image: url("./images/login_bg.jpg");
+    background-image: url("../images/login_bg.jpg");
     background-size: contain;    
     padding-top: 10%;
     padding-bottom: 10%;
