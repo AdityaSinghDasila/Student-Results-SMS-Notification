@@ -1,7 +1,7 @@
 body{
-    background-image: url("../images/home_bg.jpg");
+    background-image: url("../images/home\ class\ real.jpg");
     background-size: contain;
-    color: grey;
+    color: black;
 }
 .form{
     display: flex;
@@ -20,7 +20,7 @@ header{
     border:1px solid navy;
     background-color: white;
     z-index: 1;
-    opacity: 70%;
+    opacity: 90%;
     border-radius: 2%;
     margin-left: 25%;
     margin-right:25%;
