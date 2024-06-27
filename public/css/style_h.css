@@ -1,6 +1,6 @@
 body{
     background-image: url("../images/home\ class\ real.jpg");
-    background-size: contain;
+    background-size:cover;
     color: black;
 }
 .form{
