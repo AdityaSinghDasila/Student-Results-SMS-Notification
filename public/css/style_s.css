@@ -35,21 +35,29 @@ table{
     display:flex;
     justify-content: center;
 }
-.btndiv:hover{
-    letter-spacing: 0.25rem;
-}
+
 .smsbt{
+  position:relative;
   color:white;
   background-color:#007BFF ;
   border:0px;
   border-radius: 10%;
   padding: 15px;
   margin:2rem;
+  transition:0.1s;
+}
+.smsbt:hover{
+    letter-spacing: 0.3em;
 }
 .backbt{
+  position:relative;  
   background-color: #DEE2E6;
   border:0px;
   border-radius: 10%;
   padding: 15px;
   margin:2rem;
+  transition: 0.1s;
+}
+.backbt:hover{
+    letter-spacing: 0.3em;
 }
