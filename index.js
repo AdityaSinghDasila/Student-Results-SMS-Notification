@@ -30,7 +30,7 @@ app.get("/",(req,res)=>{
    }catch(error){
     console.log(error.message);
    }
-})
+});
 app.post("/submit",async (req,res)=>{
     try{
         let qry="select username from teachers WHERE password = $1";
@@ -50,7 +50,38 @@ app.post("/submit",async (req,res)=>{
         }catch(error){
         console.log(error.message);
     }
+});
+
+//inserting the form in the database
+app.post("/marks",async (req,res)=>{
+    try{
+        let qry="INSERT INTO result(id,name,english,hindi,maths,science,phN) VALUES($1,$2,$3,$4,$5,$6,$7)";
+        const result= await db.query(qry,[req.body["id"],req.body["name"],req.body["english"],req.body["hindi"],req.body["maths"],req.body["science"],req.body["phN"]]);
+        if(result){
+            console.log("updation successfull");
+        }
+        else{
+            console.log("There was a problem in insertion to DB");
+        }
+    }catch(error){
+        console.log(error.message);
+    }
 })
+
+
+
+
+app.get("/sms",(req,res)=>{
+//also create logic to dislplay the table of the result, by sending it with the ejs file
+    console.log("sms route was hit");
+    try{
+        res.render("SMSpage.ejs",{});
+    }catch(error){
+        console.log(error.message);
+    }
+});
+
+
 app.listen(port,()=>{
     console.log("the server is running on port: "+port);
 })
