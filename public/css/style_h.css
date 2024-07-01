@@ -49,6 +49,10 @@ header{
   display: flex;
   gap:5%;
 }
+a{
+  text-decoration: none;
+  color: black ;
+}
 
 /* roboto css below:- */
 
