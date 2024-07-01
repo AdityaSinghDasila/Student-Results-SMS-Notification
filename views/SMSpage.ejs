@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="css/style_s.css">
+    <!-- axios -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
     <header>
@@ -14,8 +16,33 @@
         <h2>RESULT SMS PORTAL</h2>
 
         <h3>STUDENT MARKSHEET INFORMATION</h3>
-    <!--now under this ill ejs loops and shit to print all the student's record that has been filled-->
+        <div class="info">
+                                        <!-- no error -->
+                                        <%if(locals.data){
+                                            let i=0;
+                                            while(i<data.rows.length){%>
+                                                     <div class="rowi">
+                                                        <p><%=data.rows[i].id%></p>
+                                                        <p><%=data.rows[i].name%></p>
+                                                        <p><%=data.rows[i].english%></p>
+                                                        <p><%=data.rows[i].hindi%></p>
+                                                        <p><%=data.rows[i].maths%></p>
+                                                        <p><%=data.rows[i].science%></p>
+                                                        <p><%=data.rows[i].sent%></p>
+                                                        <p><%=data.rows[i].phn%></p>    
+                                                    </div>
+                                                <%i++;}%>
+                                            <%}%>
+
+
+                                           
+                                            <%if(locals.err){%>
+                                                <h5><%=err%></h5>
+                                            <%}%>
+        </div>
     </div>
+    <script>
         
+    </script>
 </body>
 </html>

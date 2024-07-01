@@ -78,16 +78,26 @@ app.post("/marks",async (req,res)=>{
 
 
 
-
-app.get("/sms",(req,res)=>{
+//for anchor button
+app.get("/sms",async (req,res)=>{
 //also create logic to dislplay the table of the result, by sending it with the ejs file
     console.log("sms route was hit");
     try{
-        res.render("SMSpage.ejs",{});
+        let qry="SELECT * FROM result;";
+        const result=await db.query(qry);
+        if(result){
+            console.log(result.rows[0]);//for checking and error handling
+            res.render("SMSpage.ejs",{data:result,});
+            console.log("query was a success");
+        }
+        
     }catch(error){
+        res.render("SMSpage.ejs",{err:error["detail"],});
         console.log(error.message);
     }
 });
+
+
 
 
 app.listen(port,()=>{
