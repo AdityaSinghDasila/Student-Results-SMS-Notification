@@ -5,6 +5,7 @@ import {fileURLToPath} from "url";
 import {dirname} from "path";
 import ejs from "ejs";
 import pg from "pg";
+import axios from "axios";
 
 const port = 3000;
 const app = express(); 
@@ -58,9 +59,19 @@ app.post("/marks",async (req,res)=>{
         let qry="INSERT INTO result(id,name,english,hindi,maths,science,phN) VALUES($1,$2,$3,$4,$5,$6,$7)";
         const result= await db.query(qry,[req.body["id"],req.body["name"],req.body["english"],req.body["hindi"],req.body["maths"],req.body["science"],req.body["phN"]]);
         if(result){
+            let insertMessage=`Last Successfull insertion: ${req.body["name"]},${req.body["id"]}`;
+            res.render("home.ejs",{
+                name:req.body["username"],
+                status:insertMessage,
+            })
+            console.log(result);
             console.log("updation successfull");
         }
     }catch(error){
+        res.render("home.ejs",{
+            name:req.body["username"],
+            status:error["detail"],
+        });
         console.log(error.message);
     }
 })

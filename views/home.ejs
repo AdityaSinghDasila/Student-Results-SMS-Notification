@@ -9,6 +9,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <!-- axios -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
     <header>
@@ -53,12 +55,18 @@
                 </div>
                 <div class="btn-div" >
                     <input id="reset" class="btn-w" type="reset" value="Reset">
-                    <input class="btn" type="submit" value="Submit">
+                    <input class="btn" id="sbmt" type="submit" value="Submit">
                     <button type="button" id="smsbtn" class="btn-w"><a href="\sms">s.m.s</a>
                     </button>
                 </div>
             </form>
         </div>
+        <%if(locals.status){%>
+            <h5><%=status%></h5>
+        <%}%>
     </div>
+    <script>
+        
+    </script>
 </body>
 </html>
