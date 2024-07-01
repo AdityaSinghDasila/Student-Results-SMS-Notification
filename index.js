@@ -60,9 +60,6 @@ app.post("/marks",async (req,res)=>{
         if(result){
             console.log("updation successfull");
         }
-        else{
-            console.log("There was a problem in insertion to DB");
-        }
     }catch(error){
         console.log(error.message);
     }
