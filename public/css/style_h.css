@@ -1,6 +1,6 @@
 body{
     background-image: url("../images/home\ class\ real.jpg");
-    background-size:cover;
+    background-size:contain;
     color: black;
 }
 .form{
@@ -38,12 +38,20 @@ header{
   border:0px;
   border-radius: 10%;
   padding: 5px;
+  transition:0.1s;
+}
+.btn:hover{
+  letter-spacing: 0.1em;
 }
 .btn-w{
   background-color: #DEE2E6;
   border:0px;
   border-radius: 10%;
   padding: 5px;
+  transition:0.1s;
+}
+.btn-w:hover{
+  letter-spacing: 0.1em;
 }
 .btn-div{
   display: flex;
