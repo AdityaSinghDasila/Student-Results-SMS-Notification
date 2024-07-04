@@ -6,6 +6,9 @@ import {dirname} from "path";
 import ejs from "ejs";
 import pg from "pg";
 import axios from "axios";
+import passport from "passport";
+import session from "express-session";
+import { Strategy } from "passport-local";
 
 const port = 3000;
 const app = express(); 
@@ -23,7 +26,19 @@ db.connect();
 app.use(bodyparser.urlencoded({extended:true}));
 app.use(express.static('public'));
 
-const __dirname=dirname(fileURLToPath(import.meta.url));
+//intitalise session
+app.use(session({
+    secret:"topsecretkey",
+    resave:false,
+    saveUninitialized:true,
+}))
+
+// initialize passport
+app.use(passport.initialize());
+app.use(passport.session());
+//now define local startegy at the end
+
+// const __dirname=dirname(fileURLToPath(import.meta.url));
 
 app.get("/",(req,res)=>{
    try{
@@ -32,26 +47,22 @@ app.get("/",(req,res)=>{
     console.log(error.message);
    }
 });
-app.post("/submit",async (req,res)=>{
-    try{
-        let qry="select username from teachers WHERE password = $1";
-        const result = await db.query(qry,[req.body["password"]])
-        if(result.rows.length>0)
-        {
-            console.log("the credentials were correct")
-            res.render("home.ejs",{
-                name:req.body["username"],
-            });
-        }
-        else{
-            res.render("login.ejs",{
-                msg:"Username or Password did not match",
-            });
-        }
-        }catch(error){
-        console.log(error.message);
+
+app.get("/home",(req,res)=>{
+    console.log(req.user);
+    if(req.isAuthenticated()){
+        res.render("home.ejs",{name:req.user.username})
+    }else{
+        res.redirect("/");
     }
 });
+
+
+
+app.post("/submit",passport.authenticate("local",{
+    successRedirect:"/home",
+    failureRedirect:"/",
+}));
 
 //inserting the form in the database
 app.post("/marks",async (req,res)=>{
@@ -81,7 +92,8 @@ app.post("/marks",async (req,res)=>{
 //for anchor button
 app.get("/sms",async (req,res)=>{
 //also create logic to dislplay the table of the result, by sending it with the ejs file
-    console.log("sms route was hit");
+    if(req.isAuthenticated()){
+        console.log("sms route was hit");
     try{
         let qry="SELECT * FROM result;";
         const result=await db.query(qry);
@@ -95,7 +107,63 @@ app.get("/sms",async (req,res)=>{
         res.render("SMSpage.ejs",{err:error["detail"],});
         console.log(error.message);
     }
+    }else{
+        res.redirect("/");
+    }
 });
+
+
+
+app.get("/logout",(req,res)=>{
+    req.logout(req.user,(err)=>{
+        if(err){
+            console.log(err);
+        }
+        res.redirect("/");
+    })
+})
+
+
+//defining local strategy by using {Strategy} from passport-local
+passport.use(new Strategy(async function verify(username,password,cb){
+    try{
+        let qry="select * from teachers WHERE username = $1";
+        const result = await db.query(qry,[username]);
+        if(result.rows.length>0)
+        {
+                const user = result.rows[0];
+                if(user.password==password){
+                    console.log("the credentials were correct")
+                    // res.render("home.ejs",{
+                    //     name:req.body["username"],
+                    // });
+                    return cb(null,user);
+                }else{
+                    return cb(null,false);
+                }
+        }
+        else{
+                // res.render("login.ejs",{
+                //     msg:"Username or Password did not match",
+                // });
+                return cb(null,false);
+            }
+        }catch(error){
+                        console.log(error.message);
+                    }
+}
+));
+
+//inserting data to session like session id
+passport.serializeUser((user,cb)=>{
+    cb(null,user);
+});
+
+//deserialising data from session
+passport.deserializeUser((user,cb)=>{
+    cb(null,user);
+})
+
 
 app.listen(port,()=>{
     console.log("the server is running on port: "+port);
