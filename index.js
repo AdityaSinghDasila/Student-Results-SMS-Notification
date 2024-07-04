@@ -9,9 +9,12 @@ import axios from "axios";
 import passport from "passport";
 import session from "express-session";
 import { Strategy } from "passport-local";
+import env from "dotenv";
+
 
 const port = 3000;
 const app = express(); 
+env.config();
 
 //dbase connection
 const db = new pg.Client({
@@ -28,9 +31,12 @@ app.use(express.static('public'));
 
 //intitalise session
 app.use(session({
-    secret:"topsecretkey",
+    secret:process.env.TOP_SECRET,
     resave:false,
     saveUninitialized:true,
+    cookie:{
+        maxAge:1000*60*60,
+    }
 }))
 
 // initialize passport
